@@ -2,17 +2,26 @@
 
 namespace App\Message;
 
+use Symfony\Component\Mailer\MailerInterface;
+
 class MailNotification
 {
-    private $content;
 
-    public function __construct(string $content)
+    private string $email;
+    public MailerInterface $mailer;
+
+    public function __construct(MailerInterface $mailer, $email)
     {
-        $this->content = $content;
+        $this->mailer = $mailer;
+        $this->email = $email;
     }
 
-    public function getContent(): string
+    /**
+     * @return string
+     */
+    public function getEmail() : string
     {
-        return $this->content;
+        return $this->email;
     }
+
 }
